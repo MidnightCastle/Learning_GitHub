@@ -39,6 +39,7 @@ int main()
 		cout << "\t6.  End the Program\n";
 		cout << "CHOOSE 1-6:  ";
 		cin >> choice;
+
 		while(choice < 1 || choice > 6)
 		{
 			cout << "\nInvalid input!  CHOOSE 1-6:  ";
@@ -51,7 +52,7 @@ int main()
 				cout << "Enter an integer:  ";
 				cin >> num;
 				//print out the result of the sumOfNumbers function here
-
+				cout << "The sum of " << num << " is " << sumOfNumbers(num) << endl;
 				break;
 
 
@@ -60,6 +61,7 @@ int main()
 				{
 					myArray[x] = (rand()%100)+1;
 				}
+
 				cout << "\n\nISMEMBER ARRAY FUNCTION\n";
 				cout << "Enter an integer:  ";
 				cin >> num;
@@ -69,7 +71,14 @@ int main()
 					cout << myArray[x] << " ";
 				}
 				//print if the value that the user entered is in the array or not here
-
+				if (isMember(myArray, ARRAY_SIZE - 1, num))
+				{
+					cout << "\nThe value you selected: " << num << " is in the array." << endl;
+				}
+				else
+				{
+					cout << "\nThe value you selected: " << num << " is not in the array." << endl;
+				}
 
 				break;
 
@@ -110,7 +119,13 @@ int main()
 
 				//print out whether the user's string is a palindrome or not here.
 				//when you print out the user's string, print out the uppercase version that doesn't have the spaces removed.
-
+				if (isPalindrome(userStrModified)) {
+					cout << userString << " is a palindrome." << endl;
+				}
+				else
+				{
+					cout << userString << " is not a palindrome." << endl;
+				}
 				break;
 
 			case 5:
@@ -120,7 +135,7 @@ int main()
 				cout << "\nEnter in the second integer:  ";
 				cin >> num2;
 				//print out the value returned from the multiply function here
-                cout << multiply(num1, num2);
+                cout << "Result: " << multiply(num1, num2) << endl;
 				break;
 
 		}
@@ -131,16 +146,25 @@ int main()
 }
 
 //implement the five recursive functions below!!!!
-int multiply (int x, int y)
+int sumOfNumbers(int num)
 {
-    if (x == 0 || y == 0)
-    {
-        return 0;
-    }
-    return x + multiply(x ,y - 1);
+	if (num <= 1)
+        return num;
+    return num + sumOfNumbers(num - 1);
 }
 
-//implement the five recursive functions below!!!!
+bool isMember(int* myArray, int arraySize, int num)
+{
+    if(arraySize == 0)
+	{
+		return false;
+	}
+	else if (myArray[arraySize - 1] == num)
+	{
+		return true;
+	}
+	return isMember(myArray, arraySize - 1, num);
+}
 
 void stringReverser(string target, int length)
 {
@@ -150,7 +174,26 @@ void stringReverser(string target, int length)
 	stringReverser(target, length-1);
 }
 
-int sumOfNumbers(int)
+bool isPalindrome(string userStr)
 {
-	return 0;
+	if (userStr[0] == userStr[userStr.length() - 1] && userStr.length() > 1)
+	{
+		return isPalindrome(userStr.substr(1, userStr.length() - 2));
+	}
+
+	if (userStr.length() <= 1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+int multiply (int x, int y)
+{
+    if (x == 0 || y == 0)
+        return 0;
+    return x + multiply(x ,y - 1);
 }
