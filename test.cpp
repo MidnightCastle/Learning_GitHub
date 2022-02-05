@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <ctime>
+#include <string>
 using namespace std;
 
 //function prototypes for the recursive functions
@@ -78,7 +79,7 @@ int main()
 				cin.ignore();
 				getline(cin, userString);
 				//call string reverser function here
-
+				stringReverser(userString, userString.length());
 				break;
 
 			case 4:
@@ -131,3 +132,11 @@ int main()
 
 
 //implement the five recursive functions below!!!!
+
+void stringReverser(string target, int length)
+{
+	if (length <= 0)
+		return;
+	cout << target.at(length-1);
+	stringReverser(target, length-1);
+}
