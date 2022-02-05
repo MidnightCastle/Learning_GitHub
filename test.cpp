@@ -149,3 +149,8 @@ void stringReverser(string target, int length)
 	cout << target.at(length-1);
 	stringReverser(target, length-1);
 }
+
+int sumOfNumbers(int)
+{
+	return 0;
+}
