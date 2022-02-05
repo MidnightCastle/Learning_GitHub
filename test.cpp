@@ -120,7 +120,7 @@ int main()
 				cout << "\nEnter in the second integer:  ";
 				cin >> num2;
 				//print out the value returned from the multiply function here
-
+                cout << multiply(num1, num2);
 				break;
 
 		}
@@ -130,6 +130,15 @@ int main()
 	return 0;
 }
 
+//implement the five recursive functions below!!!!
+int multiply (int x, int y)
+{
+    if (x == 0 || y == 0)
+    {
+        return 0;
+    }
+    return x + multiply(x ,y - 1);
+}
 
 //implement the five recursive functions below!!!!
 
